@@ -15,6 +15,7 @@ import axios from 'axios';
      const [SelectOption, SetSelectOption] = useState("");
      const [agreed, setAgreed] = useState(false);
 
+      const [isLoading, setIsloading] = useState(true);
      const [ options , setOptions] = useState([])
      const [editedID, setEditedID] = useState("");
     
@@ -36,7 +37,9 @@ import axios from 'axios';
         const getUser = ()=> {
             axios.get(`${process.env.REACT_APP_API_URL}/${id}`)
             .then((response)=> {
-              console.log(response.data)
+
+              setIsloading(false)
+              // console.log(response.data)
               SetName(response.data.name)
               SetSelectOption(response.data.SelectOption)
               setAgreed(response.data.agreed)
@@ -60,6 +63,9 @@ import axios from 'axios';
             axios.put(`${process.env.REACT_APP_API_URL}/${editedID}` , data);
             navigate('/')
      }
+
+
+     if(isLoading) return (<div>Loading...</div>)
 
  
 
