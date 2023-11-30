@@ -17,7 +17,7 @@ export default function Row({name , SelectOption , agreed , _id}) {
         <tr>
           <td>{name}</td>
           <td>{SelectOption}</td>
-          <td>{agreed.toString() ? `Yes` : 'No'}</td>
+          <td>{agreed ? `Yes` : 'No'}</td>
           <div>
             <td>
                 <Link to={`/edit/${_id}`}>
