@@ -6,13 +6,13 @@ import Row from "./Row";
 
 const SimpleInput = ({ options}) => {
 
-  const API_URL = process.env.REACT_APP_API_URL_USER 
+  
   const [ userData , setUserData ] = useState([])
   const [ name , SetName] = useState('')
   const [ SelectOption, SetSelectOption] = useState('Electronics and Optics')
   const [ agreed , setAgreed ] = useState(false)
   const [ isLoading , setIsloading] = useState(false)
-  const [ outputs , SetOutput] = useState('')
+  // const [ outputs , SetOutput] = useState('')
 
 
       useEffect(() => {

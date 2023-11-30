@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
+
 import { useNavigate } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
@@ -46,7 +46,7 @@ import axios from 'axios';
 
         getUser()
         
-    }, [])
+    }, [id])
 
 
      const handleSubmit = (e)=> {
