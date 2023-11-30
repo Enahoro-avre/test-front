@@ -99,11 +99,11 @@ const SimpleInput = ({ options}) => {
         </form>
 
         <div>
-          {userData && (
+          {userData.length > 0  && (
           <table className="users">
             <thead>
               <tr>
-                <th>Name |  Sector | Agreed to term</th>
+                <th>Name |  Sector | Agreed to terms</th>
             
               </tr>
             </thead>
