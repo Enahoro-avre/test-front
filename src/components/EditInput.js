@@ -31,9 +31,7 @@ import axios from 'axios';
         getJobs();
     },[])
 
-    useEffect(()=> {
-        
-    
+    useEffect(()=> { 
         const getUser = ()=> {
             axios.get(`${process.env.REACT_APP_API_URL}/${id}`)
             .then((response)=> {
@@ -50,7 +48,14 @@ import axios from 'axios';
         getUser()
         
     }, [id])
-
+    
+      const handleCheck = (event) => {
+        if (event.target.checked) {
+          setAgreed(true);
+        } else {
+          setAgreed(false);
+        }
+      };
 
      const handleSubmit = (e)=> {
             e.preventDefault()
@@ -59,52 +64,53 @@ import axios from 'axios';
               name , SelectOption , agreed 
             }
             // console.log("NewWdited data" , data)
-
             axios.put(`${process.env.REACT_APP_API_URL}/${editedID}` , data);
             navigate('/')
      }
 
-
      if(isLoading) return (<div>Loading...</div>)
 
- 
 
    return (
-    <div className='app'>
-     <div>
-       <form onSubmit={handleSubmit}>
-         <div className="form-control">
-           <label htmlFor="name">Your Name</label>
-           <input
-             type="text"
-             id="name"
-             onChange={(e) => SetName(e.target.value)}
-             defaultValue={name}
-             required
-           />
-         </div>
-         <div className="form-select">
-           <select
-             defaultValue={SelectOption}
-             onChange={(e) => SetSelectOption(e.target.value)}
-             required
-           >
-             {options?.map((option) => (
-               <option key={option._id} className="option" value={option.label}>
-                 {option.value}
-               </option>
-             ))}
-           </select>
-         </div>
-         <div className="form-checkbox" required>
-           <input type="checkbox" onChange={() => setAgreed((prev)=>!prev)} /> Agree to
-           terms
-         </div>
-         <div className="form-actions">
-           <button>Submit</button>
-         </div>
-       </form>
-     </div>
+     <div className="app">
+       <div>
+         <form onSubmit={handleSubmit}>
+           <div className="form-control">
+             <label htmlFor="name">Your Name</label>
+             <input
+               type="text"
+               id="name"
+               onChange={(e) => SetName(e.target.value)}
+               defaultValue={name}
+               required
+             />
+           </div>
+           <div className="form-select">
+             <select
+               defaultValue={SelectOption}
+               onChange={(e) => SetSelectOption(e.target.value)}
+               required
+             >
+               {options?.map((option) => (
+                 <option
+                   key={option._id}
+                   className="option"
+                   value={option.label}
+                 >
+                   {option.value}
+                 </option>
+               ))}
+             </select>
+           </div>
+           <div className="form-checkbox" required>
+             <input type="checkbox" value={agreed} onChange={handleCheck} />{" "}
+             Agree to terms
+           </div>
+           <div className="form-actions">
+             <button>Submit</button>
+           </div>
+         </form>
+       </div>
      </div>
    );
    }

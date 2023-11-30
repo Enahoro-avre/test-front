@@ -6,11 +6,9 @@ import SimpleInput from './components/SimpleInput';
 
 function App() {
 
-
   const [ jobList , setJobList] = useState([])
 
   // const baseURL = process.env.REACT_APP_API_URL
-
   useEffect(()=>{
     const getJobs = ()=> {
       axios.get(process.env.REACT_APP_API_URL)
@@ -23,7 +21,7 @@ function App() {
   } , [])
 
 
-  console.log(jobList)
+  // console.log(jobList)
 
   return (
 

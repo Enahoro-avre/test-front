@@ -32,6 +32,14 @@ const SimpleInput = ({ options}) => {
     setAgreed('')
   }
 
+  const handleCheck = (event)=> {
+    if(event.target.checked){
+      setAgreed(true)
+    }else{
+      setAgreed(false)
+    }
+  }
+
   const handleSubmit = (e)=> {
     e.preventDefault()
     setIsloading(true)
@@ -87,10 +95,7 @@ const SimpleInput = ({ options}) => {
             </select>
           </div>
           <div className="form-checkbox" required>
-            <input
-              type="checkbox"
-              onChange={() => setAgreed((prev) => !prev)}
-            />{" "}
+            <input type="checkbox" value={agreed} onChange={handleCheck} />{" "}
             Agree to terms
           </div>
           <div className="form-actions">
@@ -99,20 +104,19 @@ const SimpleInput = ({ options}) => {
         </form>
 
         <div>
-          {userData.length > 0  && (
-          <table className="users">
-            <thead>
-              <tr>
-                <th>Name |  Sector | Agreed to terms</th>
-            
-              </tr>
-            </thead>
-            <tbody>
-              {userData?.map((user) => (
-                <Row {...user} />
-              ))}
-            </tbody>
-          </table>
+          {userData.length > 0 && (
+            <table className="users">
+              <thead>
+                <tr>
+                  <th>Name | Sector | Agreed to terms</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userData?.map((user) => (
+                  <Row {...user} />
+                ))}
+              </tbody>
+            </table>
           )}
         </div>
       </div>
